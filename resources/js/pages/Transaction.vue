@@ -1,6 +1,6 @@
 <template>
   <div>
-    Transaction page
+    <h1>Transaction page</h1>
   </div>
 </template>
 

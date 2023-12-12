@@ -1,6 +1,6 @@
 <template>
   <div>
-    POS page
+    <h1>POS page</h1>
   </div>
 </template>
 

@@ -122,25 +122,25 @@
             <li class="menu-item open">
                 <router-link to="/store" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-store"></i>
-                    <div>Stock</div>
+                    <div>ສະຕ໋ອກສິນຄ້າ</div>
                 </router-link>
             </li>
             <li class="menu-item">
                 <router-link to="/pos" class="menu-link">
                     <i class='menu-icon tf-icons bx bx-cart' ></i>
-                    <div>P.O.S</div>
+                    <div>ຂາຍ POS</div>
                 </router-link>
             </li>
             <li class="menu-item">
                 <router-link to="/transaction" class="menu-link">
                     <i class='menu-icon tf-icons bx bx-line-chart' ></i>
-                    <div>Transaction</div>
+                    <div>ການເຄື່ອນໄຫວ</div>
                 </router-link>
             </li>
             <li class="menu-item">
                 <router-link to="/report" class="menu-link">
-                    <i class='menu-icon tf-icons bx bx-bar-chart-alt-2' ></i>
-                    <div>Report</div>
+                    <i class='menu-icon tf-icons bx bx-receipt'></i>
+                    <div>ລາຍງານ</div>
                 </router-link>
             </li>
         </ul>
