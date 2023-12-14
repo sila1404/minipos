@@ -173,7 +173,6 @@
                     :offset="2"
                     @paginate="GetStore($event)"
                 />
-                <button @click="showAlert">Hello world</button>
             </div>
         </div>
     </div>
@@ -229,23 +228,6 @@ export default {
         formatPrice(value) {
             let val = (value / 1).toFixed(0).replace(",", ".");
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        },
-        showAlert() {
-            // this.$swal({
-            //     position: "top-end",
-            //     toast: true,
-            //     title: "the internet",
-            //     icon: "success",
-            //     showConfirmButton: false,
-            //     timer: 2500,
-            // });
-
-            this.$swal({
-                title: "the internet",
-                icon: "error",
-                showConfirmButton: false,
-                timer: 3500,
-            });
         },
         ChangeSort() {
             if (this.Sort == "asc") {
