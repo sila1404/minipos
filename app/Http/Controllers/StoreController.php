@@ -9,6 +9,31 @@ class StoreController extends Controller
 {
     //
 
+    public function index() {
+
+        $sort = \Request::get('sort');
+
+        $perpage = \Request::get('perpage');
+
+        $search = \Request::get('search');
+
+        $store = Store::orderBy('id', $sort)
+        ->where(
+            function($query) use ($search) {
+                $query->where('name', 'LIKE', "%{$search}%")
+                ->orWhere('price_buy', 'LIKE', "%{$search}%");
+            }
+        )
+        ->paginate($perpage)->toArray();
+
+        return array_reverse($store);
+
+
+        // $store = Store::orderBy('id', 'asc')->get();
+        // return $store;
+
+    }
+
     public function add(Request $request) {
         try {
 
@@ -24,6 +49,60 @@ class StoreController extends Controller
             
             $success = true;
             $message = 'ບັນທຶກສຳເລັດ';
+        } catch (\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+        }
+        
+        $response = [
+            'success' => $success,
+            'message' => $message,
+        ];
+        return response()->json($response); 
+    }
+
+    public function edit($id) {
+        $store = Store::find($id);
+
+        return $store;
+    }
+
+    public function update($id, Request $request) {
+        try {
+
+            $store = Store::find($id);
+
+            $store->update([
+                "name" => $request->name,
+                "image" => '',
+                "amount" => $request->amount,
+                "price_buy" => $request->price_buy,
+                "price_sell" => $request->price_sell,
+            ]);
+            
+            $success = true;
+            $message = 'ອັບເດດສຳເລັດ';
+        } catch (\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+        }
+        
+        $response = [
+            'success' => $success,
+            'message' => $message,
+        ];
+        return response()->json($response); 
+    }
+
+    public function delete($id) {
+        try {
+
+            $store = Store::find($id);
+
+            $store->delete();
+            
+            $success = true;
+            $message = 'ລິບສຳເລັດ';
         } catch (\Illuminate\Database\QueryException $ex) {
             $success = false;
             $message = $ex->getMessage();
