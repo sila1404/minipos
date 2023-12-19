@@ -4,96 +4,51 @@
         <div class="card-body">
             <div v-if="ShowForm">
                 <div class="d-flex justify-content-end">
-                    <button
-                        type="button"
-                        class="btn btn-success me-2"
-                        @click="SaveStore()"
-                        :disabled="CheckForm"
-                    >
+                    <button type="button" class="btn btn-success me-2" @click="SaveStore()" :disabled="CheckForm">
                         ບັນທຶກ
                     </button>
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        @click="CancelStore()"
-                    >
+                    <button type="button" class="btn btn-secondary" @click="CancelStore()">
                         ຍົກເລີກ
                     </button>
                 </div>
                 <!-- {{ FormStore }}
                 <hr /> -->
                 <div class="row">
-                    <div
-                        class="col-md-4 text-center"
-                        style="position: relative"
-                    >
-                        <button
-                            type="button"
-                            class="btn rounded-pill btn-icon btn-danger"
-                            style="position: absolute; right: 25px"
-                            v-if="FormStore.image"
-                            @click="RemoveImage()"
-                        >
+                    <div class="col-md-4 text-center" style="position: relative">
+                        <button type="button" class="btn rounded-pill btn-icon btn-danger"
+                            style="position: absolute; right: 25px" v-if="FormStore.image" @click="RemoveImage()">
                             <i class="bx bxs-x-circle fs-4"></i>
                         </button>
-                        <img
-                            :src="image_pre"
-                            class="rounded cursor-pointer"
-                            @click="$refs.img_store.click()"
-                            style="width: 70%"
-                            alt=""
-                        />
-                        <input
-                            type="file"
-                            ref="img_store"
-                            style="display: none"
-                            @change="onSelect"
-                        />
+                        <img :src="image_pre" class="rounded cursor-pointer" @click="$refs.img_store.click()"
+                            style="width: 70%" alt="" />
+                        <input type="file" ref="img_store" style="display: none" @change="onSelect" />
                     </div>
                     <div class="col-md-8">
                         <div>
                             <label class="form-label fs-6">
                                 ຊື່ສິນຄ້າ: <span class="text-danger">*</span>
                             </label>
-                            <input
-                                type="text"
-                                class="form-control mb-2"
-                                placeholder="......"
-                                v-model="FormStore.name"
-                            />
+                            <input type="text" class="form-control mb-2" placeholder="......" v-model="FormStore.name" />
                             <label class="form-label fs-6">
-                                ຈຳນວນ: <span class="text-danger">*</span></label
-                            >
-                            <cleave
-                                :options="options"
-                                class="form-control mb-2"
-                                placeholder="......"
-                                v-model="FormStore.amount"
-                            />
+                                ຈຳນວນ: <span class="text-danger">*</span></label>
+                            <cleave :options="options" class="form-control mb-2" placeholder="......"
+                                v-model="FormStore.amount" />
                             <div class="row">
                                 <div class="col-md-6">
                                     <label class="form-label fs-6">
                                         ລາຄາຊື້:
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <cleave
-                                        :options="options"
-                                        class="form-control mb-2"
-                                        placeholder="......"
-                                        v-model="FormStore.price_buy"
-                                    />
+                                    <cleave :options="options" class="form-control mb-2" placeholder="......"
+                                        v-model="FormStore.price_buy" />
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fs-6">
                                         ລາຄາຂາຍ:
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <cleave
-                                        :options="options"
-                                        class="form-control mb-2"
-                                        placeholder="......"
-                                        v-model="FormStore.price_sell"
-                                    />
+                                    <cleave :options="options" class="form-control mb-2" placeholder="......"
+                                        v-model="FormStore.price_sell" />
                                 </div>
                             </div>
                         </div>
@@ -104,38 +59,19 @@
                 <div class="d-flex justify-content-between mb-2">
                     <div class="d-flex align-items-center">
                         <div class="me-2 cursor-pointer" @click="ChangeSort()">
-                            <i
-                                class="bx bx-sort-up fs-4"
-                                v-if="Sort == 'asc'"
-                            ></i>
-                            <i
-                                class="bx bx-sort-down fs-4"
-                                v-if="Sort == 'desc'"
-                            ></i>
+                            <i class="bx bx-sort-up fs-4" v-if="Sort == 'asc'"></i>
+                            <i class="bx bx-sort-down fs-4" v-if="Sort == 'desc'"></i>
                         </div>
-                        <select
-                            class="form-select"
-                            v-model="PerPage"
-                            @change="GetStore()"
-                        >
+                        <select class="form-select" v-model="PerPage" @change="GetStore()">
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="30">30</option>
                         </select>
                     </div>
                     <div class="d-flex">
-                        <input
-                            type="text"
-                            class="form-control me-2"
-                            placeholder="ຄົ້ນຫາ..."
-                            v-model="Search"
-                            @keyup.enter="GetStore()"
-                        />
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            @click="AddStore()"
-                        >
+                        <input type="text" class="form-control me-2" placeholder="ຄົ້ນຫາ..." v-model="Search"
+                            @keyup.enter="GetStore()" />
+                        <button type="button" class="btn btn-primary" @click="AddStore()">
                             <i class="bx bxs-user-plus me-2 fs-4"></i>ເພີ່ມໃໝ່
                         </button>
                     </div>
@@ -156,20 +92,10 @@
                                 {{ list.id }}
                             </td>
                             <td>
-                                <img
-                                    :src="url + '/assets/img/' + list.image"
-                                    v-if="list.image"
-                                    style="width: 100%"
-                                    class="rounded"
-                                    alt=""
-                                />
-                                <img
-                                    :src="url + '/assets/img/image_pre.jpg'"
-                                    v-else
-                                    style="width: 100%"
-                                    class="rounded"
-                                    alt=""
-                                />
+                                <img :src="url + '/assets/img/' + list.image" v-if="list.image" style="width: 100%"
+                                    class="rounded" alt="" />
+                                <img :src="url + '/assets/img/image_pre.jpg'" v-else style="width: 100%" class="rounded"
+                                    alt="" />
                             </td>
                             <td>{{ list.name }}</td>
                             <td class="text-end">
@@ -177,29 +103,16 @@
                             </td>
                             <td class="text-center">
                                 <div class="dropdown">
-                                    <button
-                                        type="button"
-                                        class="btn p-0 dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown"
-                                    >
-                                        <i
-                                            class="bx bx-dots-vertical-rounded"
-                                        ></i>
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a
-                                            class="dropdown-item"
-                                            href="javascript:void(0);"
-                                            @click="EditStore(list.id)"
-                                        >
+                                        <a class="dropdown-item" href="javascript:void(0);" @click="EditStore(list.id)">
                                             <i class="bx bx-edit-alt me-1"></i>
                                             ແກ້ໄຂ
                                         </a>
-                                        <a
-                                            class="dropdown-item"
-                                            href="javascript:void(0);"
-                                            @click="DeleteStore(list.id)"
-                                        >
+                                        <a class="dropdown-item" href="javascript:void(0);" @click="DeleteStore(list.id)">
                                             <i class="bx bx-trash me-1"></i>
                                             ລົບ
                                         </a>
@@ -209,11 +122,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <Pagination
-                    :pagination="StoreData"
-                    :offset="2"
-                    @paginate="GetStore($event)"
-                />
+                <Pagination :pagination="StoreData" :offset="2" @paginate="GetStore($event)" />
             </div>
         </div>
     </div>
@@ -263,7 +172,7 @@ export default {
         };
     },
 
-    mounted() {},
+    mounted() { },
     components: {
         Cleave,
     },
@@ -320,6 +229,8 @@ export default {
             this.FormStore.price_buy = "";
             this.FormStore.price_sell = "";
 
+            this.image_pre = this.url + "/assets/img/image_pre.jpg";
+
             this.ShowForm = true;
             this.FormType = true;
         },
@@ -340,10 +251,11 @@ export default {
                     this.FormStore = res.data;
                     this.ShowForm = true;
 
-                    if(res.data.image) {
-                        this.image_pre = this.url + '/assets/img/' + res.data.image
+                    if (res.data.image) {
+                        this.image_pre =
+                            this.url + "/assets/img/" + res.data.image;
                     } else {
-                        this.image_pre = this.url + '/assets/img/image_pre.jpg'
+                        this.image_pre = this.url + "/assets/img/image_pre.jpg";
                     }
                 })
                 .catch((error) => {

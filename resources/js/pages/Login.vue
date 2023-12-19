@@ -1,8 +1,6 @@
 <template>
     <div class="d-flex justify-content-center">
-        <div
-            class="authentication-wrapper authentication-basic container-p-y col-md-4"
-        >
+        <div class="authentication-wrapper authentication-basic container-p-y col-md-4">
             <div class="authentication-inner">
                 <!-- Register -->
                 <div class="card">
@@ -14,73 +12,36 @@
                         <p class="mb-4">ຍິນດີຕ້ອນຮັບ ກະລຸນາເຂົ້າສູ່ລະບົບ</p>
 
                         <div class="mb-3">
-                            <label for="email" class="form-label"
-                                >ອີເມວລ໌:</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="email"
-                                name="email-username"
-                                placeholder="..."
-                                autofocus=""
-                                fdprocessedid="mamqh"
-                                v-model="email"
-                            />
+                            <label for="email" class="form-label">ອີເມວລ໌:</label>
+                            <input type="text" class="form-control" id="email" name="email-username" placeholder="..."
+                                autofocus="" fdprocessedid="mamqh" v-model="email" />
                         </div>
                         <div class="mb-3 form-password-toggle">
                             <div class="d-flex justify-content-between">
-                                <label class="form-label" for="password"
-                                    >ລະຫັດຜ່ານ:</label
-                                >
+                                <label class="form-label" for="password">ລະຫັດຜ່ານ:</label>
                             </div>
                             <div class="input-group input-group-merge">
-                                <input
-                                    :type="show_pass"
-                                    id="password"
-                                    class="form-control"
-                                    name="password"
-                                    placeholder="············"
-                                    aria-describedby="password"
-                                    fdprocessedid="7afvw4"
-                                    v-model="password"
-                                />
-                                <span
-                                    class="input-group-text cursor-pointer"
-                                    @click="
-                                        show_pass == 'password'
-                                            ? (show_pass = 'text')
-                                            : (show_pass = 'password')
-                                    "
-                                >
-                                    <i
-                                        class="bx bx-hide"
-                                        v-if="show_pass == 'password'"
-                                    ></i>
-                                    <i
-                                        class="bx bx-show"
-                                        v-if="show_pass == 'text'"
-                                    ></i>
+                                <input :type="show_pass" id="password" class="form-control" name="password"
+                                    placeholder="············" aria-describedby="password" fdprocessedid="7afvw4"
+                                    v-model="password" />
+                                <span class="input-group-text cursor-pointer" @click="
+                                    show_pass == 'password'
+                                        ? (show_pass = 'text')
+                                        : (show_pass = 'password')
+                                    ">
+                                    <i class="bx bx-hide" v-if="show_pass == 'password'"></i>
+                                    <i class="bx bx-show" v-if="show_pass == 'text'"></i>
                                 </span>
                             </div>
                         </div>
 
-                        <div
-                            class="alert alert-warning"
-                            role="alert"
-                            v-if="text_error || check_email || check_pass"
-                        >
+                        <div class="alert alert-warning" role="alert" v-if="text_error || check_email || check_pass">
                             {{ text_error }} {{ check_email }} {{ check_pass }}
                         </div>
 
                         <div class="mb-3">
-                            <button
-                                class="btn btn-primary d-grid w-100"
-                                type="submit"
-                                fdprocessedid="41vnbh"
-                                :disabled="check_bt"
-                                @click="Login()"
-                            >
+                            <button class="btn btn-primary d-grid w-100" type="submit" fdprocessedid="41vnbh"
+                                :disabled="check_bt" @click="Login()">
                                 ເຂົ້າສູ່ລະບົບ
                             </button>
                         </div>
@@ -116,7 +77,7 @@ export default {
         };
     },
 
-    mounted() {},
+    mounted() { },
     computed: {
         check_bt() {
             var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
