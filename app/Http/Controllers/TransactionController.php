@@ -17,6 +17,34 @@ class TransactionController extends Controller
         $this->middleware('auth:api');
     }
 
+    public function index(Request $request) {
+
+        $sort = \Request::get('sort');
+        $perpage = \Request::get('perpage');
+        $month_type = $request->month_type;
+        $dmy = $request->dmy;
+
+        $m = explode("-", $dmy)[1];
+        $y = explode("-", $dmy)[0];
+
+        if($month_type == 'm') {
+
+            $tran = Transaction::orderBy("id", $sort)
+            ->whereYear("created_at", $y)
+            ->whereMonth("created_at", $m)
+            ->paginate($perpage)
+            ->toArray();
+
+        } elseif($month_type == 'y') {
+            $tran = Transaction::orderBy("id", $sort)
+            ->whereYear("created_at", $y)
+            ->paginate($perpage)
+            ->toArray();
+        }
+
+        return array_reverse($tran);
+    }
+
     public function add(Request $request) {
         try {
 
@@ -86,7 +114,7 @@ class TransactionController extends Controller
                     "bill_id" => $bill_id,
                     "name" => $item["name"],
                     "amount" => $item["order_amount"],
-                    "price" => $item["order_amount"]*$item["price_sell"]
+                    "price" => $item["price_sell"]
                 ]);
                 $bill_list->save();
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,7 @@ Route::controller(StoreController::class)->group(function (){
 });
 
 Route::controller(TransactionController::class)->group(function (){
-  // Route::get('transaction', 'index');
+  Route::post('transaction', 'index');
   // Route::get('transaction/edit/{id}', 'edit');
   Route::post('transaction/add', 'add');
   // Route::post('transaction/update/{id}', 'update');
@@ -44,4 +45,8 @@ Route::controller(TransactionController::class)->group(function (){
 
 Route::controller(BillController::class)->group(function (){
   Route::get('bills/print/{id}', 'print_bill');
+});
+
+Route::controller(ReportController::class)->group(function (){
+  Route::post('report','created_report');
 });
